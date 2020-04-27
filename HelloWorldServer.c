@@ -38,9 +38,9 @@ int main(int argc, char** argv)
     serv_addr.sin_family = AF_INET;
     // 표준 ipv4
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    // ip주소 지정
+    // ip주소 지정 (자주 바뀌는 네트워크 주소이므로 INADDR_ANY, host to network long -> ip)
     serv_addr.sin_port = htons(atoi(argv[1]));
-    // port 번호 지정
+    // port 번호 지정 (host to network short -> port)
     if(bind(serv_sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) == -1)
     {
         error_handling("bind() error");
